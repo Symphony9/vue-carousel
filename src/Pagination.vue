@@ -22,8 +22,8 @@
         <button
           type="button"
           role="button"
-          aria-label="`Item ${index}`"
-          :title="`Item ${index}`"
+          :aria-label="getDotTitle(index)"
+          :title="getDotTitle(index)"
           class="VueCarousel-dot-button"
           :tabindex="0"
           :style="`
@@ -82,6 +82,17 @@ export default {
      */
     isCurrentDot(index) {
       return index === this.carousel.currentPage;
+    },
+
+    /**
+     * Generate dot title
+     * @param {number} index - dot index
+     * @return {string}
+     */
+    getDotTitle(index) {
+      return this.carousel.$children[index].title
+        ? this.carousel.$children[index].title
+        : `Item ${index}`;
     }
   }
 };
